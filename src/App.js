@@ -5,6 +5,8 @@ import ListItem from './ListItem';
 import axios from 'axios';
 import loading from './loading.gif'
 
+axios.defaults.baseURL = "https://5e672acb1937020016fed6a3.mockapi.io";
+
 class App extends React.Component{
   constructor(){
     super();
@@ -16,7 +18,7 @@ class App extends React.Component{
       Todos : [],
       loadingState : true
     };
-    this.apiURL = 'https://5e672acb1937020016fed6a3.mockapi.io/';
+    // this.apiURL = 'https://5e672acb1937020016fed6a3.mockapi.io/';
 
     this.handleChange = this.handleChange.bind(this);
     this.addTodo = this.addTodo.bind(this);
@@ -35,7 +37,7 @@ class App extends React.Component{
   }
 
  async componentDidMount(){
-   const response = await axios.get(`${this.apiURL}/todos`);
+   const response = await axios.get(`/todos`);
    console.log(response);
    this.setState({
       Todos : response.data,
@@ -47,7 +49,7 @@ class App extends React.Component{
   async addTodo(){
    
 
-    const response = await axios.post(`${this.apiURL}/todos`,{
+    const response = await axios.post(`$/todos`,{
       name : this.state.newTodo
     });
     console.log(response);
@@ -67,7 +69,7 @@ class App extends React.Component{
     const todo = todos[index]
 
  
-    await axios.delete(`${this.apiURL}/todos/${todo.id}`);
+    await axios.delete(`/todos/${todo.id}`);
  
     delete todos[index];
 
@@ -89,7 +91,7 @@ class App extends React.Component{
   async updateTodo(){
     const todo = this.state.Todos[this.state.editingIndex];
 
-    const response = await axios.put(`${this.apiURL}/Todos/${todo.id}`,{
+    const response = await axios.put(`/Todos/${todo.id}`,{
       name : this.state.newTodo
     });
   
