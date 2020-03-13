@@ -13,7 +13,7 @@ export default class check extends Component {
     
 
    async componentDidMount(){
-        const response = await axios.get('/player/8L9L9GL');
+        const response = await axios.get('player/8L9L9GL');
         console.log(response);
       }
 
